@@ -72,6 +72,11 @@ $(document).ready(function () {
 		}
 	});
 
+	// боковое меню
+	$('.sidebar__button').on('click', function () {
+		toggleDropdown($(this));
+	});
+
 	// tabs
 	const tabsControls = $('.tabs__btn');
 
