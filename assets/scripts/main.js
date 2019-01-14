@@ -12,25 +12,19 @@ $(document).ready(function () {
 	});
 
 	// выравнивание контента в слайдере
-	// const getOffset = (el) => el.offset().left;
-	// const sliderDot = $('.owl-dot:first-child');
-	// const slideContent = $('.owl-item.active .container');
-	// const applyOffset = () => {
-	// 	slideContent.css('padding-left', (getOffset(sliderDot) - getOffset($('.owl-item.active .container'))) + 'px' );
-	// };
-    //
-	// applyOffset();
-    //
-	// $(window).on('resize', function () {
-	// 	applyOffset();
-	// });
-    //
-	// $('.hero__carousel').on('changed.owl.carousel', function(e) {
-	// 	const currentIndex = e.item.index;
-	// 	const currentSlide = $(e.target).find(".owl-item").eq(currentIndex);
-	// 	console.log( getOffset(currentSlide.find('.container')));
-	// 	currentSlide.find('.container').css('padding-left', (getOffset(sliderDot) - getOffset(currentSlide.find('.container')) + 'px' ));
-	// });
+	const dotsQuantity = $('.hero .owl-dot').length;
+	const slideBody = $('.owl-item .hero__body');
+	const slideFooter = $('.owl-item .hero__footer');
+	const setPositionToElements = () => {
+		slideBody.css('margin-left', (-15 * dotsQuantity) + 'px');
+		slideFooter.css('margin-left', (-15 * dotsQuantity) + 'px');
+	};
+
+	const resetPositionOnElements = () => {
+		slideBody.css('margin-left', 0);
+		slideFooter.css('margin-left', 0);
+	};
+
 
 	// callback popup
 	$('.jsPopupToggler').magnificPopup({
@@ -81,15 +75,19 @@ $(document).ready(function () {
 
 	if (window.matchMedia('(min-width: 1025px)').matches) {
 		disableMobileMenu();
+		setPositionToElements();
 	}else if (!window.matchMedia('(min-width: 1025px)').matches && !enabled){
 		enableMobileMenu();
+		resetPositionOnElements();
 	}
 
 	$(window).on('resize', function () {
 		if (window.matchMedia('(min-width: 1025px)').matches) {
 			disableMobileMenu();
+			setPositionToElements();
 		}else if (!window.matchMedia('(min-width: 1025px)').matches && !enabled){
 			enableMobileMenu();
+			resetPositionOnElements();
 		}
 	});
 
