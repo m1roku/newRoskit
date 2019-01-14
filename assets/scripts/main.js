@@ -11,6 +11,27 @@ $(document).ready(function () {
 		]
 	});
 
+	// выравнивание контента в слайдере
+	// const getOffset = (el) => el.offset().left;
+	// const sliderDot = $('.owl-dot:first-child');
+	// const slideContent = $('.owl-item.active .container');
+	// const applyOffset = () => {
+	// 	slideContent.css('padding-left', (getOffset(sliderDot) - getOffset($('.owl-item.active .container'))) + 'px' );
+	// };
+    //
+	// applyOffset();
+    //
+	// $(window).on('resize', function () {
+	// 	applyOffset();
+	// });
+    //
+	// $('.hero__carousel').on('changed.owl.carousel', function(e) {
+	// 	const currentIndex = e.item.index;
+	// 	const currentSlide = $(e.target).find(".owl-item").eq(currentIndex);
+	// 	console.log( getOffset(currentSlide.find('.container')));
+	// 	currentSlide.find('.container').css('padding-left', (getOffset(sliderDot) - getOffset(currentSlide.find('.container')) + 'px' ));
+	// });
+
 	// callback popup
 	$('.jsPopupToggler').magnificPopup({
 		type: 'inline',
@@ -73,7 +94,7 @@ $(document).ready(function () {
 	});
 
 	// боковое меню
-	$('.sidebar__button').on('click', function () {
+	$('.sidebar__firstLvl .sidebar__button').on('click', function () {
 		toggleDropdown($(this));
 	});
 
@@ -118,6 +139,8 @@ $(document).ready(function () {
 			$(this).next(accContent).slideToggle();
 		}
 	});
+
+
 
 	// youtube popup
 	const showVideoReview = () => {
