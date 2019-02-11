@@ -32,6 +32,70 @@ $(document).ready(function () {
 		preloader: false
 	});
 
+	$('.jsReviewGallery').magnificPopup({
+		type: 'image',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		}
+	});
+
+	// videoReviews
+	function findVideos() {
+		let videos = document.querySelectorAll('.videoReview');
+
+		for (let i = 0; i < videos.length; i++) {
+			setupVideo(videos[i]);
+		}
+	}
+
+	function setupVideo(video) {
+		let link = video.querySelector('.videoReview__link');
+		let media = video.querySelector('.videoReview__media');
+		let button = video.querySelector('.videoReview__button');
+		let id = parseMediaURL(media);
+
+		video.addEventListener('click', () => {
+			let iframe = createIframe(id);
+
+			link.remove();
+			button.remove();
+			video.appendChild(iframe);
+		});
+
+		link.removeAttribute('href');
+		video.classList.add('video_enabled');
+	}
+
+	function parseMediaURL(media) {
+		let regexp = /https:\/\/i\.ytimg\.com\/vi\/([a-zA-Z0-9_-]+)\/maxresdefault\.jpg/i;
+		let url = media.src;
+		let match = url.match(regexp);
+
+		return match[1];
+	}
+
+	function createIframe(id) {
+		let iframe = document.createElement('iframe');
+
+		iframe.setAttribute('allowfullscreen', '');
+		iframe.setAttribute('allow', 'autoplay');
+		iframe.setAttribute('src', generateURL(id));
+		iframe.classList.add('videoReview__media');
+
+		return iframe;
+	}
+
+	function generateURL(id) {
+		let query = '?rel=0&showinfo=0&autoplay=1';
+
+		return 'https://www.youtube.com/embed/' + id + query;
+	}
+
+	findVideos();
+
 	// menu
 	let enabled = false;
 	const toggleMenu = () => {
