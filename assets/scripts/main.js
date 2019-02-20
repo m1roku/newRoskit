@@ -73,7 +73,6 @@ $(document).ready(function () {
 		let regexp = /https:\/\/i\.ytimg\.com\/vi\/([a-zA-Z0-9_-]+)\/maxresdefault\.jpg/i;
 		let url = media.src;
 		let match = url.match(regexp);
-
 		return match[1];
 	}
 
@@ -153,11 +152,6 @@ $(document).ready(function () {
 			enableMobileMenu();
 			resetPositionOnElements();
 		}
-	});
-
-	// боковое меню
-	$('.sidebar__firstLvl .sidebar__button').on('click', function () {
-		toggleDropdown($(this));
 	});
 
 	// tabs
