@@ -131,7 +131,7 @@ $(document).ready(function () {
 		$('.menu').removeAttr('style');
 		$('.jsDropdown').off('click');
 		$('.menu__dropdownList').removeAttr('style');
-		$('.menu__item').removeClass('menu__item_active');
+		$('.menu__item').removeClass('js_active');
 		enabled = false;
 	};
 
